@@ -3,6 +3,8 @@ import { Form } from '../../components/Form/Form';
 import { Header } from '../../components/Header/Header';
 import { ToDoList } from '../../components/ToDoList/ToDoList';
 import type { ToDo } from '../../../models/todo-item';
+import { ToastContainer } from 'react-toastify';
+import { notifyCreate, notifyUpdate, notifyDelete } from '../../../utils/notifications';
 
 export const ToDoListPage = () => {
   const [todos, setTodos] = useState<ToDo[]>([]);
@@ -16,6 +18,7 @@ export const ToDoListPage = () => {
         isDone: false,
       },
     ]);
+    notifyCreate();
   };
 
   const updateTodo = (todoItem: ToDo) => {
@@ -28,10 +31,12 @@ export const ToDoListPage = () => {
         return todo;
       })
     );
+    notifyUpdate();
   };
 
   const deleteTodo = (todoItem: ToDo) => {
     setTodos(todos.filter((todo) => todo.id !== todoItem.id));
+    notifyDelete();
   };
 
   return (
@@ -39,6 +44,7 @@ export const ToDoListPage = () => {
       <Header />
       <Form createTodo={createTodo} />
       <ToDoList todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} />
+      <ToastContainer />
     </>
   );
 };
