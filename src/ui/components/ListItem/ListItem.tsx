@@ -1,7 +1,5 @@
-import clsx from 'clsx';
 import type { ToDo } from '../../../models/todo-item';
-import styles from './ListItem.module.scss';
-import { Link } from 'react-router-dom';
+import { StyledLink } from './ListItem.styled';
 
 interface Props {
   todo: ToDo;
@@ -9,11 +7,8 @@ interface Props {
 
 export const ListItem = ({ todo }: Props) => {
   return (
-    <Link
-      className={clsx(styles.link, todo.isDone ? styles.done : styles.notDone)}
-      to={`/list/${todo.id}`}
-    >
+    <StyledLink $isDone={todo.isDone} to={`/list/${todo.id}`}>
       {todo.text}
-    </Link>
+    </StyledLink>
   );
 };

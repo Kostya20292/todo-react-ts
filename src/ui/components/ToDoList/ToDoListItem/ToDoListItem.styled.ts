@@ -1,4 +1,6 @@
-.wrapper {
+import styled from 'styled-components';
+
+export const ToDoListItemWrapper = styled.li`
   width: 100%;
   min-height: 50px;
   font-size: 14px;
@@ -16,13 +18,15 @@
   margin: 0 0 10px 0;
   padding: 14px;
   word-break: break-word;
-}
 
-.wrapper:last-child {
-  margin: 0;
-}
+  &:last-child {
+    margin: 0;
+  }
+`;
 
-.buttons {
+export const ToDoListItemSpan = styled.span``;
+
+export const ToDoListItemButtons = styled.div`
   width: 100px;
   height: 50px;
   display: flex;
@@ -30,9 +34,9 @@
   position: absolute;
   top: 0;
   right: 0;
-}
+`;
 
-.button {
+export const ToDoListItemButton = styled.button<{ $icon: string }>`
   width: 50px;
   height: 50px;
   background-color: transparent;
@@ -43,27 +47,16 @@
   box-shadow: none;
   outline: none;
   cursor: pointer;
-}
+  background-image: url(${(props) => props.$icon});
 
-.trash:last-of-type:before {
-  content: '';
-  width: 1px;
-  height: 30px;
-  background: #edf0f1;
+  &:last-of-type:before {
+    content: '';
+    width: 1px;
+    height: 30px;
+    background: #edf0f1;
 
-  position: absolute;
-  top: 10px;
-  left: 0;
-}
-
-.trash {
-  background-image: url(../../../../assets/img/trash.png);
-}
-
-.check {
-  background-image: url(../../../../assets/img/check.png);
-}
-
-.uncheck {
-  background-image: url(../../../../assets/img/uncheck.png);
-}
+    position: absolute;
+    top: 10px;
+    left: 0;
+  }
+`;

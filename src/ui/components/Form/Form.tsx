@@ -1,9 +1,10 @@
 import type { FormEvent, ChangeEvent } from 'react';
-import styles from './Form.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { createTodo } from '../../../bll/todo/todoSlice';
 import type { RootState } from '../../../bll/store';
 import { resetText, setText } from '../../../bll/form/formSlice';
+import { FormButton, FormElement, FormInput, FormLabel, FormWrapper } from './Form.styled';
+import plusIcon from '../../../assets/plus.png';
 
 export const Form = () => {
   const { text } = useSelector((state: RootState) => state.formReducer);
@@ -23,13 +24,13 @@ export const Form = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input type="text" className={styles.input} value={text} onChange={handleChange} />
-          <button className={styles.button}></button>
-        </label>
-      </form>
-    </div>
+    <FormWrapper>
+      <FormElement onSubmit={handleSubmit}>
+        <FormLabel>
+          <FormInput type="text" value={text} onChange={handleChange} />
+          <FormButton $icon={plusIcon} />
+        </FormLabel>
+      </FormElement>
+    </FormWrapper>
   );
 };

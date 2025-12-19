@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import styles from './ToDoList.module.scss';
 import { ToDoListItem } from './ToDoListItem/ToDoListItem';
 import type { RootState } from '../../../bll/store';
+import { ToDoListCompleted, ToDoListContainer, ToDoListFailed } from './ToDoList.styled';
 
 export const ToDoList = () => {
   const { todos } = useSelector((state: RootState) => state.todoReducer);
@@ -10,17 +10,17 @@ export const ToDoList = () => {
   const completedTodos = todos.filter((todo) => todo.isDone);
 
   return (
-    <div className={styles.container}>
-      <ul className={`${styles.list} ${styles.failed}`}>
+    <ToDoListContainer>
+      <ToDoListFailed>
         {failedTodos.map((todo) => (
           <ToDoListItem key={todo.id} toDoItem={todo} />
         ))}
-      </ul>
-      <ul className={`${styles.list} ${styles.completed}`}>
+      </ToDoListFailed>
+      <ToDoListCompleted>
         {completedTodos.map((todo) => (
           <ToDoListItem key={todo.id} toDoItem={todo} />
         ))}
-      </ul>
-    </div>
+      </ToDoListCompleted>
+    </ToDoListContainer>
   );
 };

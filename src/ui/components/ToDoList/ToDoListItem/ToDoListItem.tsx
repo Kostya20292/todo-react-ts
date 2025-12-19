@@ -1,8 +1,16 @@
-import clsx from 'clsx';
 import type { ToDo } from '../../../../models/todo-item';
-import styles from './ToDoListItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { deleteTodo, updateTodo } from '../../../../bll/todo/todoSlice';
+import {
+  ToDoListItemButton,
+  ToDoListItemButtons,
+  ToDoListItemSpan,
+  ToDoListItemWrapper,
+} from './ToDoListItem.styled';
+
+import checkIcon from '../../../../assets/check.png';
+import uncheckIcon from '../../../../assets/uncheck.png';
+import trashIcon from '../../../../assets/trash.png';
 
 interface Props {
   toDoItem: ToDo;
@@ -20,15 +28,15 @@ export const ToDoListItem = ({ toDoItem }: Props) => {
   };
 
   return (
-    <li className={styles.wrapper}>
-      <span>{toDoItem.text}</span>
-      <div className={styles.buttons}>
-        <button className={clsx(styles.button, styles.trash)} onClick={handleDelete}></button>
-        <button
-          className={clsx(styles.button, toDoItem.isDone ? styles.check : styles.uncheck)}
+    <ToDoListItemWrapper>
+      <ToDoListItemSpan>{toDoItem.text}</ToDoListItemSpan>
+      <ToDoListItemButtons>
+        <ToDoListItemButton $icon={trashIcon} onClick={handleDelete}></ToDoListItemButton>
+        <ToDoListItemButton
+          $icon={toDoItem.isDone ? checkIcon : uncheckIcon}
           onClick={handleUpdate}
-        ></button>
-      </div>
-    </li>
+        ></ToDoListItemButton>
+      </ToDoListItemButtons>
+    </ToDoListItemWrapper>
   );
 };
