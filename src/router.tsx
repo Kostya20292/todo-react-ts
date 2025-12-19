@@ -1,28 +1,20 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from './ui/layouts/Layout';
-import { HomePage } from './ui/pages/HomePage/HomePage';
+import { ViewListPage } from './ui/pages/ViewListPage/ViewListPage';
 import { ToDoListPage } from './ui/pages/ToDoListPage/ToDoListPage';
-import { ItemDescription } from './ui/pages/ItemDescription/ItemDescription';
-import { NotFound } from './ui/pages/NotFound/NotFound';
-import type { ToDo } from './models/todo-item';
-
-const todos: ToDo[] = [
-  { id: 0, text: 'First', isDone: false },
-  { id: 1, text: 'Second', isDone: true },
-  { id: 2, text: 'Third', isDone: false },
-  { id: 3, text: 'Fourth', isDone: true },
-];
+import { ViewListItemPage } from './ui/pages/ViewListItemPage/ViewListItemPage';
+import { NotFoundPage } from './ui/pages/NotFoundPage/NotFoundPage';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
-    errorElement: <NotFound />,
+    errorElement: <NotFoundPage />,
     children: [
-      { index: true, element: <HomePage todos={todos} /> },
-      { path: 'list/:id', element: <ItemDescription todos={todos} /> },
-      { path: 'todo', element: <ToDoListPage /> },
-      { path: '*', element: <NotFound /> },
+      { index: true, element: <ToDoListPage /> },
+      { path: 'list', element: <ViewListPage /> },
+      { path: 'list/:id', element: <ViewListItemPage /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ]);

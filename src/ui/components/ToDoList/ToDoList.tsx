@@ -1,14 +1,11 @@
-import type { ToDo } from '../../../models/todo-item';
+import { useSelector } from 'react-redux';
 import styles from './ToDoList.module.scss';
 import { ToDoListItem } from './ToDoListItem/ToDoListItem';
+import type { RootState } from '../../../bll/store';
 
-interface Props {
-  todos: ToDo[];
-  updateTodo: (todoItem: ToDo) => void;
-  deleteTodo: (todoItem: ToDo) => void;
-}
+export const ToDoList = () => {
+  const { todos } = useSelector((state: RootState) => state.todoReducer);
 
-export const ToDoList = ({ todos, updateTodo, deleteTodo }: Props) => {
   const failedTodos = todos.filter((todo) => !todo.isDone);
   const completedTodos = todos.filter((todo) => todo.isDone);
 
@@ -16,22 +13,12 @@ export const ToDoList = ({ todos, updateTodo, deleteTodo }: Props) => {
     <div className={styles.container}>
       <ul className={`${styles.list} ${styles.failed}`}>
         {failedTodos.map((todo) => (
-          <ToDoListItem
-            key={todo.id}
-            toDoItem={todo}
-            updateTodo={updateTodo}
-            deleteTodo={deleteTodo}
-          />
+          <ToDoListItem key={todo.id} toDoItem={todo} />
         ))}
       </ul>
       <ul className={`${styles.list} ${styles.completed}`}>
         {completedTodos.map((todo) => (
-          <ToDoListItem
-            key={todo.id}
-            toDoItem={todo}
-            updateTodo={updateTodo}
-            deleteTodo={deleteTodo}
-          />
+          <ToDoListItem key={todo.id} toDoItem={todo} />
         ))}
       </ul>
     </div>

@@ -5,13 +5,13 @@ const toastConfig = {
 };
 
 export const notifyCreate = () => {
-  toast.success('Добавлена новая задача !', toastConfig);
+  toast.success('Добавлена новая задача!', toastConfig);
 };
 
 export const notifyUpdate = () => {
-  toast.info('Задача обновлена !', toastConfig);
+  toast.info('Задача обновлена!', toastConfig);
 };
 
 export const notifyDelete = () => {
-  toast.success('Задача удалена !', toastConfig);
+  toast.success('Задача удалена!', toastConfig);
 };

@@ -1,20 +1,22 @@
 import clsx from 'clsx';
 import type { ToDo } from '../../../../models/todo-item';
 import styles from './ToDoListItem.module.scss';
+import { useDispatch } from 'react-redux';
+import { deleteTodo, updateTodo } from '../../../../bll/todo/todoSlice';
 
 interface Props {
   toDoItem: ToDo;
-  updateTodo: (todoItem: ToDo) => void;
-  deleteTodo: (todoItem: ToDo) => void;
 }
 
-export const ToDoListItem = ({ toDoItem, updateTodo, deleteTodo }: Props) => {
+export const ToDoListItem = ({ toDoItem }: Props) => {
+  const dispatch = useDispatch();
+
   const handleDelete = () => {
-    deleteTodo(toDoItem);
+    dispatch(deleteTodo(toDoItem));
   };
 
   const handleUpdate = () => {
-    updateTodo(toDoItem);
+    dispatch(updateTodo(toDoItem));
   };
 
   return (

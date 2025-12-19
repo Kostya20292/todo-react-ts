@@ -10,10 +10,10 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <NavLink to="/" className={getLinkClassName}>
-          Home
-        </NavLink>
-        <NavLink to="/todo" className={getLinkClassName}>
           ToDo
+        </NavLink>
+        <NavLink to="/list" className={getLinkClassName}>
+          List
         </NavLink>
       </div>
     </header>

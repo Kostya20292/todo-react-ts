@@ -1,25 +1,25 @@
-import { useState } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 import styles from './Form.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { createTodo } from '../../../bll/todo/todoSlice';
+import type { RootState } from '../../../bll/store';
+import { resetText, setText } from '../../../bll/form/formSlice';
 
-interface Props {
-  createTodo: (text: string) => void;
-}
-
-export const Form = ({ createTodo }: Props) => {
-  const [text, setText] = useState('');
+export const Form = () => {
+  const { text } = useSelector((state: RootState) => state.formReducer);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (text) {
-      createTodo(text);
-      setText('');
+      dispatch(createTodo(text));
+      dispatch(resetText());
     }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+    dispatch(setText(e.target.value));
   };
 
   return (

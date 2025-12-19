@@ -1,12 +1,11 @@
-import type { ToDo } from '../../../models/todo-item';
+import { useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
+import type { RootState } from '../../../bll/store';
 
-interface Props {
-  todos: ToDo[];
-}
-
-export const ItemDescription = ({ todos }: Props) => {
+export const ViewListItemPage = () => {
+  const { todos } = useSelector((state: RootState) => state.todoReducer);
   const { id } = useParams();
+
   const todo = todos.find((todo) => String(todo.id) === id);
 
   if (!todo) {

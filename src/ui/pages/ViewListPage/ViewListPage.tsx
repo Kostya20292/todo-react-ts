@@ -1,11 +1,10 @@
-import type { ToDo } from '../../../models/todo-item';
+import { useSelector } from 'react-redux';
 import { ListItem } from '../../components/ListItem/ListItem';
+import type { RootState } from '../../../bll/store';
 
-interface Props {
-  todos: ToDo[];
-}
+export const ViewListPage = () => {
+  const { todos } = useSelector((state: RootState) => state.todoReducer);
 
-export const HomePage = ({ todos }: Props) => {
   return (
     <div className="container">
       {todos.map((todo) => (
