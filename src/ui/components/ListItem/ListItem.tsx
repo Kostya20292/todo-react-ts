@@ -1,4 +1,5 @@
 import type { ToDo } from '../../../models/todo-item';
+
 import { StyledLink } from './ListItem.styled';
 
 interface Props {

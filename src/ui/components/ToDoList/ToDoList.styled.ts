@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
+import type { Theme } from '../../../models/theme';
+
 export const ToDoListContainer = styled.div`
   width: 100%;
   padding: 15px;
 `;
 
-export const ToDoListFailed = styled.ul`
+export const ToDoListFailed = styled.ul<{ theme: Theme }>`
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -21,11 +23,12 @@ export const ToDoListFailed = styled.ul`
     display: block;
     text-align: center;
     font-size: 12px;
-    color: #aaa;
+    color: ${({ theme }) => theme.colors.textMuted};
+    transition: color 0.3s ease;
   }
 `;
 
-export const ToDoListCompleted = styled.ul`
+export const ToDoListCompleted = styled.ul<{ theme: Theme }>`
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -42,7 +45,8 @@ export const ToDoListCompleted = styled.ul`
     content: '';
     width: 150px;
     height: 1px;
-    background: #d8e5e0;
+    background: ${({ theme }) => theme.colors.border};
+    transition: background-color 0.3s ease;
 
     position: absolute;
     top: 25px;
@@ -54,6 +58,7 @@ export const ToDoListCompleted = styled.ul`
     display: block;
     text-align: center;
     font-size: 12px;
-    color: #aaa;
+    color: ${({ theme }) => theme.colors.textMuted};
+    transition: color 0.3s ease;
   }
 `;

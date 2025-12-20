@@ -1,9 +1,11 @@
 import { useSelector } from 'react-redux';
-import { ListItem } from '../../components/ListItem/ListItem';
+
 import type { RootState } from '../../../bll/store';
 
+import { ListItem } from '../../components/ListItem/ListItem';
+
 export const ViewListPage = () => {
-  const { todos } = useSelector((state: RootState) => state.todoReducer);
+  const { todos } = useSelector((state: RootState) => state.todo);
 
   return (
     <div className="container">

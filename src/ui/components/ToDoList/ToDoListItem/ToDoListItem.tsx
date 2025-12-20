@@ -1,6 +1,11 @@
-import type { ToDo } from '../../../../models/todo-item';
 import { useDispatch } from 'react-redux';
+
 import { deleteTodo, updateTodo } from '../../../../bll/todo/todoSlice';
+
+import type { ToDo } from '../../../../models/todo-item';
+
+import { notifyDelete, notifyUpdate } from '../../../../utils/notifications';
+
 import {
   ToDoListItemButton,
   ToDoListItemButtons,
@@ -21,10 +26,12 @@ export const ToDoListItem = ({ toDoItem }: Props) => {
 
   const handleDelete = () => {
     dispatch(deleteTodo(toDoItem));
+    notifyDelete();
   };
 
   const handleUpdate = () => {
     dispatch(updateTodo(toDoItem));
+    notifyUpdate();
   };
 
   return (

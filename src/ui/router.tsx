@@ -1,9 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Layout } from './ui/layouts/Layout';
-import { ViewListPage } from './ui/pages/ViewListPage/ViewListPage';
-import { ToDoListPage } from './ui/pages/ToDoListPage/ToDoListPage';
-import { ViewListItemPage } from './ui/pages/ViewListItemPage/ViewListItemPage';
-import { NotFoundPage } from './ui/pages/NotFoundPage/NotFoundPage';
+
+import { Layout } from './layouts/Layout';
+import { ToDoListPage } from './pages/ToDoListPage/ToDoListPage';
+import { ViewListPage } from './pages/ViewListPage/ViewListPage';
+import { ViewListItemPage } from './pages/ViewListItemPage/ViewListItemPage';
+import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 
 export const router = createBrowserRouter([
   {

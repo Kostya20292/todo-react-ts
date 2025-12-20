@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const FormWrapper = styled.div`
+import type { Theme } from '../../../models/theme';
+
+export const FormWrapper = styled.div<{ theme: Theme }>`
   width: 100%;
   height: 80px;
 
@@ -8,7 +10,8 @@ export const FormWrapper = styled.div`
   padding: 15px;
   z-index: 5;
 
-  background-color: #4682b4;
+  transition: background-color 0.3s ease;
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   box-shadow: 0 2px 4px rgba(44, 62, 80, 0.15);
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -31,12 +34,16 @@ export const FormInput = styled.input`
   border: 0;
   box-shadow: none;
   outline: none;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
 `;
 
 export const FormButton = styled.button<{ $icon: string }>`
   width: 50px;
   height: 50px;
-  background: transparent url(${(props) => props.$icon}) no-repeat center/cover;
+  background: transparent url(${({ $icon }) => $icon}) no-repeat center/cover;
   position: absolute;
   top: 15px;
   right: 15px;
@@ -47,4 +54,13 @@ export const FormButton = styled.button<{ $icon: string }>`
   box-shadow: none;
   outline: none;
   cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;

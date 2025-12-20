@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuid } from 'uuid';
+
 import type { ToDo } from '../../models/todo-item';
-import { notifyCreate, notifyDelete, notifyUpdate } from '../../utils/notifications';
 
 interface TodoState {
   todos: ToDo[];
@@ -16,12 +17,10 @@ export const todoSlice = createSlice({
   reducers: {
     createTodo: (state, action: PayloadAction<string>) => {
       state.todos.push({
-        id: state.todos.length,
+        id: uuid(),
         text: action.payload,
         isDone: false,
       });
-
-      notifyCreate();
     },
     updateTodo: (state, action: PayloadAction<ToDo>) => {
       const todo = state.todos.find((todo) => todo.id === action.payload.id);
@@ -29,13 +28,9 @@ export const todoSlice = createSlice({
       if (todo) {
         todo.isDone = !todo.isDone;
       }
-
-      notifyUpdate();
     },
     deleteTodo: (state, action: PayloadAction<ToDo>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
-
-      notifyDelete();
     },
   },
 });

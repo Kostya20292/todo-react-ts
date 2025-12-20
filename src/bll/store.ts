@@ -1,14 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import todoReducer from './todo/todoSlice';
 import formReducer from './form/formSlice';
+import themeReducer from './theme/themeSlice';
+
 import { loadFromLocalStorage, saveToLocalStorage } from '../utils/localStorage';
 
-type PreloadedState = { todoReducer: ReturnType<typeof todoReducer> };
+type PreloadedState = { todo: ReturnType<typeof todoReducer> };
 
 export const store = configureStore({
   reducer: {
-    todoReducer,
-    formReducer,
+    todo: todoReducer,
+    form: formReducer,
+    theme: themeReducer,
   },
   preloadedState: loadFromLocalStorage<PreloadedState>(),
 });
